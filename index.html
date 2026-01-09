@@ -3,73 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RK-s-Descriptive-Statistics-Calculator-V1
-Professional Statistics Calculator</title>
-    
-    <!-- Load Plotly from CDN -->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    
-    <!-- Link your CSS file -->
+    <title>RK's Descriptive Statistics Calculator V1</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Plotly loaded once in head -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <!-- Your HTML content here (same as before) -->
-
-    <!-- Link your JS file (at the END of body) -->
-    <script src="script.js"></script>
-</body>
-</html><div class="container">
-    <h1>📊 RK's Descriptive Statistics Calculator V1</h1>
-    
-    <div class="instructions">
-        <strong>📋 Quick Start:</strong> Upload your own CSV file → Select Column → Get your Statistics!
-        <br>Or try a sample:
-        <button class="sample-btn" onclick="loadSample('normal')">Normal</button>
-        <button class="sample-btn" onclick="loadSample('skewed')">Skewed</button>
-    </div>
-
-    <div class="upload-section">
-        <h3>🗂️ Upload Your Data</h3>
-        <input type="file" id="csvFile" accept=".csv" class="file-input">
-        <br><br>
-        <button class="sample-btn" onclick="loadSample('normal')">📊 Load Normal Sample (100 pts)</button>
-        <button class="sample-btn" onclick="loadSample('skewed')">📈 Load Skewed Sample (100 pts)</button>
-        <br><br>
-        <select id="columnSelect" style="display:none;">
-            <option value="">Select column to analyze...</option>
-        </select>
-    </div>
-
-    <div id="messages"></div>
-    <div id="dataPreview" style="display:none;">
-        <div class="preview-header">Data Preview (First 5 rows):</div>
-    </div>
-
-    <div id="results" style="display:none;">
-        <h3>📈 Statistical Summary</h3>
-        <div class="stats-container" id="statsGrid"></div>
+    <div class="container">
+        <h1>📊 RK's Descriptive Statistics Calculator V1</h1>
         
-        <div id="outliersSection" style="display:none;" class="outlier-list">
-            <div class="outlier-title">🔴 Detected Outliers:</div>
-            <div id="outlierValues"></div>
+        <div class="instructions">
+            <strong>📋 Quick Start:</strong> Upload your own CSV file → Select Column → Get your Statistics!
+            <br>Or try a sample:
+            <button class="sample-btn" onclick="loadSample('normal')">Normal</button>
+            <button class="sample-btn" onclick="loadSample('skewed')">Skewed</button>
         </div>
 
-        <div class="layout-grid">
-            <div class="chart-container">
-                <div class="chart-title">Distribution Analysis</div>
-                <div id="histogram"></div>
-            </div>
+        <div class="upload-section">
+            <h3>🗂️ Upload Your Data</h3>
+            <input type="file" id="csvFile" accept=".csv" class="file-input">
+            <br><br>
+            <button class="sample-btn" onclick="loadSample('normal')">📊 Load Normal Sample (100 pts)</button>
+            <button class="sample-btn" onclick="loadSample('skewed')">📈 Load Skewed Sample (100 pts)</button>
+            <br><br>
+            <select id="columnSelect" style="display:none;">
+                <option value="">Select column to analyze...</option>
+            </select>
+        </div>
+
+        <div id="messages"></div>
+        <div id="dataPreview" style="display:none;">
+            <div class="preview-header">Data Preview (First 5 rows):</div>
+        </div>
+
+        <div id="results" style="display:none;">
+            <h3>📈 Statistical Summary</h3>
+            <div class="stats-container" id="statsGrid"></div>
             
-            <div class="chart-container">
-                <div class="chart-title">Box-Whiskers Plot Analysis</div>
-                <div id="boxplot"></div>
+            <div id="outliersSection" style="display:none;" class="outlier-list">
+                <div class="outlier-title">🔴 Detected Outliers:</div>
+                <div id="outlierValues"></div>
+            </div>
+
+            <div class="layout-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Distribution Analysis</div>
+                    <div id="histogram"></div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-title">Box-Whiskers Plot Analysis</div>
+                    <div id="boxplot"></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Plotly CDN -->
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
- <script src="script.js"></script>
+    <!-- Load your script ONCE at the end -->
+    <script src="script.js"></script>
 </body>
 </html>
