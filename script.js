@@ -425,9 +425,10 @@ function createBoxPlot(data, stats, columnName) {
             opacity: 0.9,
             borderpad: 2,
             width: 70
+          */
         }
     ];
-/*
+
     if (stats.min !== stats.lowerFence) {
         annotations.push({
             x: 0, y: stats.min,
@@ -451,8 +452,9 @@ function createBoxPlot(data, stats, columnName) {
             ay: 20,
             font: { size: 10, color: '#7f8c8d' }
         });
+     */
     }
-*/
+
     const layout = {
         title: `Box-Whiskers Plot Analysis: ${columnName}`,
         yaxis: {
