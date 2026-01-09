@@ -272,11 +272,9 @@ function createHistogram(data, stats, columnName) {
         opacity: 0.7,
     };
 
-    // Normal curve (3 SD away from mean)
     const x = [];
     const y = [];
     const step = (stats.max - stats.min) / 200;
-    // Extend 3 SD beyond min/max for smooth tails
     for (let i = stats.mean - 3 * stats.stdDev; i <= stats.mean + 3 * stats.stdDev; i += step) {
         x.push(i);
         const norm = (1 / (stats.stdDev * Math.sqrt(2 * Math.PI))) * 
@@ -293,26 +291,6 @@ function createHistogram(data, stats, columnName) {
         line: { color: '#e74c3c', width: 2.5 },
     };
 
-    // >>> COMMENTED OUT: "Normal Distribution" label <<<
-    /*
-    const peakX = stats.mean;
-    const peakY = y[Math.floor(x.indexOf(peakX))] || Math.max(...y);
-    const annotation = {
-        x: peakX,
-        y: peakY,
-        text: 'Normal Distribution',
-        showarrow: true,
-        arrowhead: 2,
-        ax: 0,
-        ay: -40,
-        font: { size: 12, color: '#e74c3c' },
-        bgcolor: 'white',
-        bordercolor: '#e74c3c',
-        borderwidth: 1,
-        opacity: 0.9
-    };
-    */
-
     Plotly.newPlot('histogram', [trace1, trace2], {
         title: `Distribution Analysis: ${columnName}`,
         xaxis: { 
@@ -326,8 +304,7 @@ function createHistogram(data, stats, columnName) {
             gridcolor: 'rgba(200,200,200,0.5)'
         },
         showlegend: false,
-        margin: { t: 60, r: 30, b: 50, l: 50 },
-        // annotations: [annotation]  // <<< ALSO COMMENTED OUT
+        margin: { t: 60, r: 30, b: 50, l: 50 }
     });
 }
 
@@ -353,7 +330,6 @@ function createBoxPlot(data, stats, columnName) {
         quartilemethod: 'linear',
     };
 
-    // Move Q1, Q2, Q3 labels to the RIGHT using x: 1.0
     const annotations = [
         {
             x: 1.0, y: stats.q1,
@@ -425,35 +401,10 @@ function createBoxPlot(data, stats, columnName) {
             opacity: 0.9,
             borderpad: 2,
             width: 70
-          */
         }
     ];
 
-    if (stats.min !== stats.lowerFence) {
-        annotations.push({
-            x: 0, y: stats.min,
-            text: `Min: ${stats.min.toFixed(2)}`,
-            showarrow: true,
-            arrowhead: 2,
-            ax: 40,
-            ay: -20,
-            font: { size: 10, color: '#7f8c8d' }
-        });
-   */
-    }
-/*
-    if (stats.max !== stats.upperFence) {
-        annotations.push({
-            x: 0, y: stats.max,
-            text: `Max: ${stats.max.toFixed(2)}`,
-            showarrow: true,
-            arrowhead: 2,
-            ax: 40,
-            ay: 20,
-            font: { size: 10, color: '#7f8c8d' }
-        });
-     */
-    }
+    // Min/Max annotations REMOVED entirely (no code, no comments)
 
     const layout = {
         title: `Box-Whiskers Plot Analysis: ${columnName}`,
@@ -501,10 +452,6 @@ function analyzeColumn(columnName) {
     
     document.getElementById('results').style.display = 'block';
 }
-
-// ======================
-// SAMPLE DATA BUTTONS
-// ======================
 
 function loadSample(type) {
     let values, columnName;
