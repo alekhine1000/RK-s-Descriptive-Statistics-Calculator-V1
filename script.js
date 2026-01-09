@@ -35,18 +35,20 @@ function parseCSV(text) {
                     inQuotes = !inQuotes;
                 }
             } else if (char === delimiter && !inQuotes) {
-                result.push(current);
+                result.push(current.trim());
                 current = '';
             } else {
                 current += char;
             }
         }
-        result.push(current);
+        result.push(current.trim());
         return result;
     }
 
     const rawHeaders = parseLine(lines[0]);
-    const headers = rawHeaders.map(h => h.replace(/^"|"$/g, '').trim()).filter(h => h !== '');
+    const headers = rawHeaders
+        .map(h => h.replace(/^"(.*)"$/, '$1').trim())
+        .filter(h => h !== '');
 
     if (headers.length === 0) return null;
 
@@ -56,7 +58,7 @@ function parseCSV(text) {
         if (rawValues.length === headers.length) {
             const row = {};
             headers.forEach((header, index) => {
-                row[header] = rawValues[index].replace(/^"|"$/g, '').trim();
+                row[header] = rawValues[index].replace(/^"(.*)"$/, '$1').trim();
             });
             data.push(row);
         }
@@ -403,8 +405,6 @@ function createBoxPlot(data, stats, columnName) {
             width: 70
         }
     ];
-
-    // Min/Max annotations REMOVED entirely (no code, no comments)
 
     const layout = {
         title: `Box-Whiskers Plot Analysis: ${columnName}`,
